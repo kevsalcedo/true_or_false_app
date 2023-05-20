@@ -85,18 +85,6 @@ class _QuizAppState extends State<QuizApp> {
     });
   }
 
-  int questionNumber = 0;
-
-  void nextQuestion() {
-    if (questionNumber < quizBrain.questionBank.length - 1) {
-      setState(() {
-        questionNumber++;
-      });
-    } else {
-      // TODO: show a dialog with the score
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -106,7 +94,7 @@ class _QuizAppState extends State<QuizApp> {
         Expanded(
           child: Center(
             child: Text(
-              quizBrain.questionBank[questionNumber].questionText,
+              quizBrain.getQuestionText(),
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 30,
@@ -125,16 +113,14 @@ class _QuizAppState extends State<QuizApp> {
                 ),
                 onPressed: () {
                   setState(() {
-                    bool correctAnswer =
-                        quizBrain.questionBank[questionNumber].questionAnswer;
+                    bool correctAnswer = quizBrain.getQuestionAnswer();
 
                     if (correctAnswer == true) {
                       addCheckIcon();
                     } else {
                       addCancelIcon();
                     }
-
-                    nextQuestion();
+                    quizBrain.nextQuestion();
                   });
                 },
                 child: const Text(
@@ -156,8 +142,7 @@ class _QuizAppState extends State<QuizApp> {
                   backgroundColor: Colors.red,
                 ),
                 onPressed: () {
-                  bool correctAnswer =
-                      quizBrain.questionBank[questionNumber].questionAnswer;
+                  bool correctAnswer = quizBrain.getQuestionAnswer();
 
                   if (correctAnswer == false) {
                     addCheckIcon();
@@ -165,7 +150,7 @@ class _QuizAppState extends State<QuizApp> {
                     addCancelIcon();
                   }
 
-                  nextQuestion();
+                  quizBrain.nextQuestion();
                 },
                 child: const Text(
                   'False',

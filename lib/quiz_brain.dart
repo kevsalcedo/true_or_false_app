@@ -1,7 +1,9 @@
 import 'package:true_or_false_app/question.dart';
 
 class QuizBrain {
-  List<Question> questionBank = [
+  int _questionNumber = 0;
+
+  List<Question> _questionBank = [
     Question(
       question:
           'Lionel Messi has won more Ballon d\'Or awards than Cristiano Ronaldo.',
@@ -51,4 +53,20 @@ class QuizBrain {
       answer: true,
     ),
   ];
+
+  String getQuestionText() {
+    return _questionBank[_questionNumber].questionText;
+  }
+
+  bool getQuestionAnswer() {
+    return _questionBank[_questionNumber].questionAnswer;
+  }
+
+  void nextQuestion() {
+    if (_questionNumber < _questionBank.length - 1) {
+      _questionNumber++;
+    } else {
+      // TODO: show a dialog with the score
+    }
+  }
 }
