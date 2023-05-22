@@ -1,4 +1,6 @@
 import 'package:true_or_false_app/question.dart';
+import 'package:true_or_false_app/main.dart';
+import 'main.dart';
 
 class QuizBrain {
   int _questionNumber = 0;
@@ -65,8 +67,19 @@ class QuizBrain {
   void nextQuestion() {
     if (_questionNumber < _questionBank.length - 1) {
       _questionNumber++;
-    } else {
-      // TODO: show a dialog with the score
     }
+  }
+
+  bool isFinished() {
+    if (_questionNumber >= _questionBank.length - 1) {
+      print('Now returning true');
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void reset() {
+    _questionNumber = 0;
   }
 }
