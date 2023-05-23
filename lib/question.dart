@@ -1,10 +1,14 @@
 class Question {
-  late String questionText;
-  late bool questionAnswer;
+  late String question;
+  late bool answer;
 
   // Constructor
-  Question({required String question, required bool answer}) {
-    questionText = question;
-    questionAnswer = answer;
-  }
+  Question({required this.question, required this.answer});
+}
+
+class Human {
+  late double height;
+  late double weight;
+
+  Human({required this.height, required this.weight});
 }
